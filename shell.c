@@ -19,7 +19,7 @@ int main(int ac, char **av)
 	char **argv;
 	char *env[] = {"HOME=/", "PATH=/bin", NULL};
 
-	signal(SIGINT, SIG_IGN);
+	signal(SIGINT, memory_handler);
 	if (isatty(STDIN_FILENO))
 	{
 		write(1, "$ ", 2);
@@ -97,6 +97,12 @@ int main(int ac, char **av)
 				if (execve(argv[0], argv, env) == -1)
 				{
 					perror("./shell");
+					for (j = 0; j < i; j++)
+					{
+						free(argv[j]);
+					}
+					free(argv);
+					free_mem(&buff);
 					exit(EXIT_FAILURE);
 				}
 				exit(EXIT_SUCCESS);
@@ -112,7 +118,7 @@ int main(int ac, char **av)
 				free(argv);
 			}
 		}
-		memory_handler(0, &buff);
+		free_mem(&buff);
 	}
 	else
 	{
@@ -189,7 +195,6 @@ int main(int ac, char **av)
 				free(argv);
 			}
 		}
-		memory_handler(0, &buff);
 	}
 	return (0);
 }
