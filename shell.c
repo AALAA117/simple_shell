@@ -19,7 +19,6 @@ int main(int ac, char **av)
 	char **argv;
 	char *env[] = {"HOME=/", "PATH=/bin", NULL};
 
-	signal(SIGINT, memory_handler);
 	if (isatty(STDIN_FILENO))
 	{
 		write(1, "$ ", 2);
