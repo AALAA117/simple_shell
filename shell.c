@@ -85,12 +85,6 @@ int main(int ac, char **av)
 				if (execve(argv[0], argv, env) == -1)
 				{
 					perror("./shell");
-					for (j = 0; j < i; j++)
-					{
-						free(argv[j]);
-					}
-					free(argv);
-					free_mem(&buff);
 					exit(EXIT_FAILURE);
 				}
 				exit(EXIT_SUCCESS);
