@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
- * free - free memory
+ * free_mem - free memory
  * @buff: ..
  * Return: nothing
  */
