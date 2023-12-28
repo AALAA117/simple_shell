@@ -14,8 +14,8 @@ int main(int ac, char **av)
 	size_t size = 0;
 	ssize_t read;
 	char *token;
-	char *delim = " \n";
-	int count, i, status, j, k;
+	char *delim = " \n\0";
+	int count, i, status, j;
 	char **argv;
 	char *env[] = {"HOME=/", "PATH=/bin", NULL};
 
@@ -66,17 +66,6 @@ int main(int ac, char **av)
 				i++;
 			}
 			argv[i] = NULL;
-			if (_strcmp(argv[0], "exit") == 0)
-				exit(0);
-			if (_strcmp(argv[0], "env") == 0)
-			{
-				k = 0;
-				while (environ[k])
-				{
-					_puts(environ[k++]);
-					_puts("\n");
-				}
-			}
 			pid = fork();
 			if (pid == -1)
 			{
