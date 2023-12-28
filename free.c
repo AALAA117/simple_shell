@@ -11,5 +11,4 @@ void free_mem(char **buff)
 		free(*buff);
 		*buff = NULL;
 	}
-	return;
 }
